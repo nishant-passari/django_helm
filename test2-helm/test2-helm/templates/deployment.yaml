@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment6
+  labels:
+    app: django6
+spec:
+  selector:
+    matchLabels:
+      app: django6
+  template:
+    metadata:
+      labels:
+        app: django6
+    spec:
+      containers:
+      - name: django6
+        image: nishant195/django-test:{{.Values.tag}}
+        ports:
+        - name: django-port6
+          containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment6
+  labels:
+    app: mongo6
+spec:
+  selector:
+    matchLabels:
+      app: mongo6
+  template:
+    metadata:
+      labels:
+        app: mongo6
+    spec:
+      containers:
+      - name: mongo6
+        image: mongo
+        tag: "latest"
+        ports:
+        - name: mongo-port6
+          containerPort: 27017
+
+

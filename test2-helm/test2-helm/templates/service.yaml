@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django6
+spec:
+  selector:
+    app: django6
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8000
+    nodePort: 30007
+    targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo6
+spec:
+  selector:
+    app: mongo6
+  type: NodePort
+  ports:
+  - protocol: TCP
+    nodePort: 30008
+    port: 27017
+    targetPort: 27017
